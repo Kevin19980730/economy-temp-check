@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<title>Economy Temp Check — Sources</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground:    #000000;
+    --hairline:  #1C1D1F;
+    --hairline2: #2A2B2E;
+    --amber:     #FF9E1B;
+    --amber-dim: #A8721A;
+    --bone:      #E8E4DC;
+    --dim:       #6E6A62;
+    --steel:     #5AA9CE;
+    --warn:      #E0A33C;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--ground); }
+  body {
+    margin: 0; padding: 0 0 60px;
+    background: var(--ground); color: var(--bone);
+    font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    font-size: 12px; line-height: 1.35;
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+  }
+  .term { max-width: 1200px; margin: 0 auto; padding: 0 18px; }
+
+  .cmdbar {
+    display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+    background: var(--amber); color: #000; padding: 5px 12px;
+    font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: 12px;
+  }
+  .cmdbar .go { opacity: .62; }
+  .cmdbar .spacer { flex: 1 1 auto; }
+  .cmdbar a { color: #000; text-decoration: none; border-bottom: 1px solid rgba(0,0,0,.45); }
+
+  .statusbar {
+    display: flex; gap: 18px; flex-wrap: wrap; padding: 7px 12px 9px;
+    border-bottom: 1px solid var(--hairline2);
+    color: var(--dim); font-size: 11px; letter-spacing: .03em;
+  }
+  .statusbar b { color: var(--bone); font-weight: 500; }
+  a { color: var(--steel); }
+  a:hover, a:focus-visible { text-decoration: underline; }
+
+  h2 {
+    color: var(--amber); font-size: 11px; font-weight: 600;
+    letter-spacing: .16em; text-transform: uppercase;
+    margin: 30px 0 8px;
+  }
+  p.lede {
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size: 12.5px; line-height: 1.6; color: #9A958B; max-width: 76ch; margin: 0 0 10px;
+  }
+  p.lede b { color: var(--bone); font-weight: 500; }
+
+  .scroller { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 900px; }
+  th {
+    text-align: left; color: var(--dim); font-weight: 500; font-size: 10px;
+    letter-spacing: .12em; text-transform: uppercase;
+    border-bottom: 1px solid var(--amber-dim); padding: 5px 8px;
+  }
+  td {
+    padding: 6px 8px; border-bottom: 1px solid var(--hairline);
+    vertical-align: top; color: var(--bone);
+  }
+  td.metric { color: #B4AFA4; }
+  td.qtrs, td.latest { text-align: center; color: var(--bone); }
+  .note {
+    font-family: "IBM Plex Sans", sans-serif; color: var(--warn);
+    font-size: 11.5px; line-height: 1.5; margin-top: 3px; max-width: 62ch;
+  }
+  code { color: var(--dim); font-size: 10.5px; word-break: break-all; }
+  .banner {
+    border-left: 3px solid var(--warn); background: #14100A;
+    padding: 8px 12px; margin: 10px 0; color: #C9BFA8;
+    font-family: "IBM Plex Sans", sans-serif; font-size: 12px;
+  }
+  .ok { color: var(--dim); font-family: "IBM Plex Sans", sans-serif; font-size: 12px; }
+</style>
+
+<div class="term">
+  <div class="cmdbar">
+    <span>ECON</span><span class="go">&lt;GO&gt;</span>
+    <span>Sources &amp; Method</span>
+    <span class="spacer"></span>
+    <span><a href="index.html">&larr; Grid</a></span>
+  </div>
+  <div class="statusbar">
+    <span><b>42</b> series</span>
+    <span>store built <b>2026-08-21 16:34</b></span>
+    <span>source <b>SEC EDGAR</b></span>
+  </div>
+
+  <h2>Method</h2>
+  <p class="lede">
+    Every figure comes from the company's own earnings release filed with the SEC.
+    Where a company publishes the growth rate itself — <b>constant currency</b>,
+    <b>organic</b>, or <b>comparable sales</b> — that published figure is used,
+    because it carries adjustments that cannot be reconstructed from reported
+    levels. Where it does not, growth is computed from the current and prior-year
+    levels in the same filing. The rule column shows which applied.
+  </p>
+
+  <h2>Series</h2>
+  <div class="scroller">
+  <table>
+    <tr><th>Series</th><th>Ticker</th><th>Metric as disclosed</th>
+        <th>Qtrs</th><th>Latest</th><th>Filing</th><th>Rule</th></tr>
+    
+    <tr>
+      <td>Uber (Bookings, cc)<div class="note">Uber discloses constant-currency Gross Bookings growth but not an organic (ex-M&amp;A) figure, so this row is cc only.</div></td>
+      <td>UBER</td>
+      <td class="metric">Gross Bookings, constant currency</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1543151/000154315126000027/uberq226earningspressrelea.htm" target="_blank" rel="noopener">2026-08-05</a>
+          <div><code>0001543151-26-000027</code></div></td>
+      <td><code>table%[^Gross Bookings$ @ Constant Currency]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Lyft (Bookings)</td>
+      <td>LYFT</td>
+      <td class="metric">Gross Bookings</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1759509/000162828026054305/lyft-20260630xpressrelease.htm" target="_blank" rel="noopener">2026-08-06</a>
+          <div><code>0001628280-26-054305</code></div></td>
+      <td><code>tableLvl[^Gross Bookings$]</code></td>
+    </tr>
+    
+    <tr>
+      <td>DoorDash (Bookings, Organic)<div class="note">Uses DoorDash&#39;s own ex-Deliveroo figure when disclosed; otherwise total Marketplace GOV growth.</div></td>
+      <td>DASH</td>
+      <td class="metric">Marketplace GOV, ex-acquisitions</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1792789/000179278926000048/proddashex991-pressrelease.htm" target="_blank" rel="noopener">2026-08-05</a>
+          <div><code>0001792789-26-000048</code></div></td>
+      <td><code>text[In Q{q} {yyyy},.{0,150}?Marketplace GOV (?:g]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Airbnb (GBV, cc)</td>
+      <td>ABNB</td>
+      <td class="metric">Gross Booking Value, ex-FX</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1559720/000119312526337928/d70413dex991.htm" target="_blank" rel="noopener">2026-08-06</a>
+          <div><code>0001193125-26-337928</code></div></td>
+      <td><code>text[On an ex-FX basis, GBV increased ([\d.]+)%]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Booking.com (GBV, cc)</td>
+      <td>BKNG</td>
+      <td class="metric">Gross travel bookings, constant currency</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1075531/000107553126000036/q2-26bkngearningsrelease.htm" target="_blank" rel="noopener">2026-08-04</a>
+          <div><code>0001075531-26-000036</code></div></td>
+      <td><code>text[Gross bookings (?:grew|increased) ([\d.]+)%[]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Expedia (GBV)<div class="note">Expedia states its supplemental metrics carry no FX adjustment, so no constant-currency figure exists at the source.</div></td>
+      <td>EXPE</td>
+      <td class="metric">Gross Bookings</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1324424/000132442426000051/earningsrelease-q22026.htm" target="_blank" rel="noopener">2026-08-05</a>
+          <div><code>0001324424-26-000051</code></div></td>
+      <td><code>table%[^Gross Bookings$ @ Y/Y]</code></td>
+    </tr>
+    
+    <tr>
+      <td>United Airlines (Revenue)</td>
+      <td>UAL</td>
+      <td class="metric">Total operating revenue</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/100517/000010051726000135/ual_erx06302026xex991.htm" target="_blank" rel="noopener">2026-07-15</a>
+          <div><code>0000100517-26-000135</code></div></td>
+      <td><code>table%[^Total operating revenue$ @ % Increase]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Delta Air Lines (Revenue)<div class="note">Delta&#39;s adjusted revenue excludes third-party refinery sales, the basis Delta headlines and the one comparable to other carriers.</div></td>
+      <td>DAL</td>
+      <td class="metric">Operating revenue, adjusted</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/27904/000002790426000029/deltaairlinesannouncesjune.htm" target="_blank" rel="noopener">2026-07-10</a>
+          <div><code>0000027904-26-000029</code></div></td>
+      <td><code>table%[Total Revenue, adjusted @ ^Change$]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Mastercard (TPV, cc)</td>
+      <td>MA</td>
+      <td class="metric">Purchase volume, local currency</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1141391/000114139126000081/ma06302026-exx991xearnings.htm" target="_blank" rel="noopener">2026-07-30</a>
+          <div><code>0001141391-26-000081</code></div></td>
+      <td><code>text[purchase volume up ([\d.]+)%]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Visa (TPV, cc)</td>
+      <td>V</td>
+      <td class="metric">Payments volume, constant dollars</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1403161/000140316126000103/q32026earningsrelease.htm" target="_blank" rel="noopener">2026-07-28</a>
+          <div><code>0001403161-26-000103</code></div></td>
+      <td><code>text[Payments Volume\s*\(?([\d.]+)\)?\s*%]</code></td>
+    </tr>
+    
+    <tr>
+      <td>American Express (Billed Business)<div class="note">Growth is computed from reported billed business. Amex also publishes an FX-adjusted rate, which can differ by about a point.</div></td>
+      <td>AXP</td>
+      <td class="metric">Billed business</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/4962/000000496226000318/q226exhibit992.htm" target="_blank" rel="noopener">2026-07-24</a>
+          <div><code>0000004962-26-000318</code></div></td>
+      <td><code>pos[^Billed business 0/4]</code></td>
+    </tr>
+    
+    <tr>
+      <td>JPMorgan (Credit + Debit Volume)</td>
+      <td>JPM</td>
+      <td class="metric">Debit and credit card sales volume</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/19617/000162828026048078/a2q26erfex992supplement.htm" target="_blank" rel="noopener">2026-07-14</a>
+          <div><code>0001628280-26-048078</code></div></td>
+      <td><code>pos[^Debit and credit card sales volume 0/4]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Capital One (Purchase Volume)<div class="note">Capital One closed the Discover acquisition in May 2025, so growth from Q2 2025 through Q1 2026 reflects the addition, not spend.</div></td>
+      <td>COF</td>
+      <td class="metric">Credit Card purchase volume</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/927628/000092762826000083/ex992q22026earningsrelease.htm" target="_blank" rel="noopener">2026-07-21</a>
+          <div><code>0000927628-26-000083</code></div></td>
+      <td><code>pos[^Purchase volume 0/4]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Amazon (1P + 3P Retail)</td>
+      <td>AMZN</td>
+      <td class="metric">Online stores + third-party seller services</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1018724/000101872426000024/amzn-20260630xex991.htm" target="_blank" rel="noopener">2026-07-30</a>
+          <div><code>0001018724-26-000024</code></div></td>
+      <td><code>sumLvl[^Online stores+^Third-party seller services]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Walmart (Global Ecommerce)</td>
+      <td>WMT</td>
+      <td class="metric">Global eCommerce sales</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/104169/000010416926000145/earningsreleasefy27q2.htm" target="_blank" rel="noopener">2026-08-20</a>
+          <div><code>0000104169-26-000145</code></div></td>
+      <td><code>text[eCommerce sales up ([\d.]+)% globally]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Shopify (GMV)</td>
+      <td>SHOP</td>
+      <td class="metric">Gross Merchandise Volume</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1594805/000159480526000046/exhibit991pressreleaseq220.htm" target="_blank" rel="noopener">2026-08-05</a>
+          <div><code>0001594805-26-000046</code></div></td>
+      <td><code>tableLvl[^GMV$]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Costco (E-commerce, adj.)</td>
+      <td>COST</td>
+      <td class="metric">Digitally-Enabled comparable sales, adjusted</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/909832/000090983226000046/costex9918-k52826.htm" target="_blank" rel="noopener">2026-05-28</a>
+          <div><code>0000909832-26-000046</code></div></td>
+      <td><code>table%[^Digitally-Enabled$ @ Adjusted]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Walmart (SSS US, Ex. Fuel)</td>
+      <td>WMT</td>
+      <td class="metric">Walmart U.S. comp sales ex fuel</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/104169/000010416926000145/earningsreleasefy27q2.htm" target="_blank" rel="noopener">2026-08-20</a>
+          <div><code>0000104169-26-000145</code></div></td>
+      <td><code>text[Walmart U\.S\. comp sales\s*\d?\s*(?:grew|in]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Costco (SSS, Ex. Fuel)<div class="note">Costco&#39;s adjusted comp excludes gasoline prices and FX.</div></td>
+      <td>COST</td>
+      <td class="metric">U.S. comparable sales, adjusted</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/909832/000090983226000046/costex9918-k52826.htm" target="_blank" rel="noopener">2026-05-28</a>
+          <div><code>0000909832-26-000046</code></div></td>
+      <td><code>table%[^U\.S\.$ @ Adjusted]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Whole Foods (Revenue, cc)<div class="note">Amazon&#39;s Physical Stores segment, which is predominantly Whole Foods.</div></td>
+      <td>AMZN</td>
+      <td class="metric">Amazon Physical stores net sales, ex-FX</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1018724/000101872426000024/amzn-20260630xex991.htm" target="_blank" rel="noopener">2026-07-30</a>
+          <div><code>0001018724-26-000024</code></div></td>
+      <td><code>table%[Physical stores.{0,32}excluding F/X @ {cur}]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Albertsons (SSS, Ex. Fuel)</td>
+      <td>ACI</td>
+      <td class="metric">Identical sales</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1646972/000164697226000041/aciq126earningsrelease.htm" target="_blank" rel="noopener">2026-07-23</a>
+          <div><code>0001646972-26-000041</code></div></td>
+      <td><code>text[Identical sales (increased|decreased|decline]</code></td>
+    </tr>
+    
+    <tr>
+      <td>McDonald&#39;s (SSS)</td>
+      <td>MCD</td>
+      <td class="metric">Global comparable sales</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/63908/000006390826000067/exhibit991-6302026.htm" target="_blank" rel="noopener">2026-08-04</a>
+          <div><code>0000063908-26-000067</code></div></td>
+      <td><code>text[Global comparable sales (increased|decreased]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Starbucks (SSS)</td>
+      <td>SBUX</td>
+      <td class="metric">Global comparable store sales</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/829224/000082922426000129/sbux-06282026xearningsrele.htm" target="_blank" rel="noopener">2026-07-29</a>
+          <div><code>0000829224-26-000129</code></div></td>
+      <td><code>text[Global (?:Q\d )?Comparable Store Sales (Up|D]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Toast (GPV)</td>
+      <td>TOST</td>
+      <td class="metric">Gross Payment Volume</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1650164/000165016426000162/tost-20260630xexhibit991.htm" target="_blank" rel="noopener">2026-08-04</a>
+          <div><code>0001650164-26-000162</code></div></td>
+      <td><code>text[Gross Payment Volume \(GPV\) increased ([\d.]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Marriott (RevPAR)</td>
+      <td>MAR</td>
+      <td class="metric">Worldwide comparable systemwide RevPAR</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1048286/000104828626000033/mar-2026q2xex99earningsrel.htm" target="_blank" rel="noopener">2026-08-03</a>
+          <div><code>0001048286-26-000033</code></div></td>
+      <td><code>text[RevPAR\s*\d?\s*(increased|decreased|declined]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Royal Caribbean (Net Yields, cc)</td>
+      <td>RCL</td>
+      <td class="metric">Net Yields, constant currency</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/884887/000088488726000036/a2026q2earningsrelease.htm" target="_blank" rel="noopener">2026-07-28</a>
+          <div><code>0000884887-26-000036</code></div></td>
+      <td><code>text[Net Yields (increased|decreased|declined) ([]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Viking (Net Yield)<div class="note">Reported, not constant currency: Viking publishes no cc net yield, so this row is not on the same basis as Royal Caribbean&#39;s.</div></td>
+      <td>VIK</td>
+      <td class="metric">Net Yield per passenger cruise day</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1745201/000174520126000020/vik-ex99_1.htm" target="_blank" rel="noopener">2026-08-19</a>
+          <div><code>0001745201-26-000020</code></div></td>
+      <td><code>text[Net Yield was \$[\d,]+, an (increase|decreas]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Viking (Next-Year Adv. Bookings/PCD)<div class="note">A forward indicator, not a reported quarter. Viking states the booked price per PCD for the *next* season against the same point in the prior season&#39;s cycle, so this row leads the others rather than reporting alongside them.</div></td>
+      <td>VIK</td>
+      <td class="metric">Advance Bookings per PCD, following season, vs. same point a year earlier</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1745201/000174520126000020/vik-ex99_1.htm" target="_blank" rel="noopener">2026-08-19</a>
+          <div><code>0001745201-26-000020</code></div></td>
+      <td><code>text[Advance Bookings per PCD for the {yyyy1} sea]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Block (Square GPV, cc)</td>
+      <td>XYZ</td>
+      <td class="metric">Square gross payment volume, constant currency</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1512673/000119312526335117/d91486dex991.htm" target="_blank" rel="noopener">2026-08-05</a>
+          <div><code>0001193125-26-335117</code></div></td>
+      <td><code>table%[Constant Currency .*GPV YoY Growth @ {cur}]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Target (SSS)</td>
+      <td>TGT</td>
+      <td class="metric">Comparable sales</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/27419/000002741926000034/a2026q2ex-99.htm" target="_blank" rel="noopener">2026-08-19</a>
+          <div><code>0000027419-26-000034</code></div></td>
+      <td><code>table%[^Comparable sales change$ @ Three Months Ended]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Home Depot (SSS)</td>
+      <td>HD</td>
+      <td class="metric">Comparable sales</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/354950/000035495026000145/hd_exhibit991x08022026.htm" target="_blank" rel="noopener">2026-08-18</a>
+          <div><code>0000354950-26-000145</code></div></td>
+      <td><code>table%[^Comparable sales \(% change\)$ @ Three Months Ended]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Lowe&#39;s (SSS)</td>
+      <td>LOW</td>
+      <td class="metric">Comparable sales</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/60667/000006066726000113/exhibit991-07312026.htm" target="_blank" rel="noopener">2026-08-19</a>
+          <div><code>0000060667-26-000113</code></div></td>
+      <td><code>text[Comparable sales for the quarter (increased|]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Dollar General (SSS)</td>
+      <td>DG</td>
+      <td class="metric">Same-store sales</td>
+      <td class="qtrs">9</td>
+      <td class="latest">Q1 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/29534/000110465926069198/tm2616084d1_ex99.htm" target="_blank" rel="noopener">2026-06-02</a>
+          <div><code>0001104659-26-069198</code></div></td>
+      <td><code>text[[Ss]ame-[Ss]tore [Ss]ales (increased|decreas]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Dollar Tree (SSS)<div class="note">The Dollar Tree banner only. Family Dollar, divested in 2025, is excluded throughout so the row stays comparable across the split.</div></td>
+      <td>DLTR</td>
+      <td class="metric">Same-store net sales, Dollar Tree segment</td>
+      <td class="qtrs">9</td>
+      <td class="latest">Q1 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/935703/000093570326000064/ex991q1-26earningspressrel.htm" target="_blank" rel="noopener">2026-05-28</a>
+          <div><code>0000935703-26-000064</code></div></td>
+      <td><code>text[comparable store net sales (increased|decrea]</code></td>
+    </tr>
+    
+    <tr>
+      <td>CarMax (Used Unit Comps)<div class="note">Used-vehicle unit comps, not dollars, so this row is a volume read rather than a price-inflated one.</div></td>
+      <td>KMX</td>
+      <td class="metric">Comparable store used unit sales</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1170010/000117001026000053/q1fy27earningsrelease.htm" target="_blank" rel="noopener">2026-06-17</a>
+          <div><code>0001170010-26-000053</code></div></td>
+      <td><code>text[comparable store used unit sales (increased|]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Kroger (SSS, Ex. Fuel)</td>
+      <td>KR</td>
+      <td class="metric">Identical sales without fuel</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/56873/000110465926075395/tm2618219d1_ex99-1.htm" target="_blank" rel="noopener">2026-06-18</a>
+          <div><code>0001104659-26-075395</code></div></td>
+      <td><code>text[Identical [Ss]ales without fuel\s*(increased]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Chipotle (SSS)</td>
+      <td>CMG</td>
+      <td class="metric">Comparable restaurant sales</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1058090/000105809026000063/cmg-20260729xex991.htm" target="_blank" rel="noopener">2026-07-29</a>
+          <div><code>0001058090-26-000063</code></div></td>
+      <td><code>table%[^Comparable restaurant sales increase @ {cur}]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Darden (SSS)</td>
+      <td>DRI</td>
+      <td class="metric">Consolidated same-restaurant sales</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/940944/000094094426000016/exhibit991-q4fy26.htm" target="_blank" rel="noopener">2026-06-25</a>
+          <div><code>0000940944-26-000016</code></div></td>
+      <td><code>text[Same-restaurant sales:\s*Consolidated Darden]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Capital One (Card Net Charge-Off Rate)<div class="note">Card segment, not the total company. The supplement&#39;s table set shifts between quarters, so the card table is identified by the fact that it carries purchase volume rather than by position.</div></td>
+      <td>COF</td>
+      <td class="metric">Credit Card net charge-off rate</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/927628/000092762826000083/ex992q22026earningsrelease.htm" target="_blank" rel="noopener">2026-07-21</a>
+          <div><code>0000927628-26-000083</code></div></td>
+      <td><code>posVal[^Net charge-off (?:\(recovery\) )?rate #0]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Capital One (Card 30+ Day Delinquency)</td>
+      <td>COF</td>
+      <td class="metric">Credit Card 30+ day delinquency rate</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/927628/000092762826000083/ex992q22026earningsrelease.htm" target="_blank" rel="noopener">2026-07-21</a>
+          <div><code>0000927628-26-000083</code></div></td>
+      <td><code>posVal[^30\+ day delinquency rate #0]</code></td>
+    </tr>
+    
+    <tr>
+      <td>Synchrony (Net Charge-Off Rate)<div class="note">Private-label and store cards, the nearest listed read on the subprime consumer.</div></td>
+      <td>SYF</td>
+      <td class="metric">Net charge-off rate</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1601712/000160171226000035/creditstatsfinancialtables.htm" target="_blank" rel="noopener">2026-08-17</a>
+          <div><code>0001601712-26-000035</code></div></td>
+      <td><code>posVal[^Net charge-off rate #0]</code></td>
+    </tr>
+    
+    <tr>
+      <td>American Express (Net Write-Off Rate)</td>
+      <td>AXP</td>
+      <td class="metric">Net write-off rate, principal only</td>
+      <td class="qtrs">10</td>
+      <td class="latest">Q2 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/4962/000000496226000318/q226exhibit992.htm" target="_blank" rel="noopener">2026-07-24</a>
+          <div><code>0000004962-26-000318</code></div></td>
+      <td><code>posVal[^Net write-off rate \(principal only\) #0]</code></td>
+    </tr>
+    
+  </table>
+  </div>
+
+  <h2>Gaps from the last run</h2>
+  
+  <p class="ok">None — every cell on the grid was read from a filing.</p>
+  
+
+  <h2>Conventions</h2>
+  <p class="lede">
+    <b>Calendar alignment.</b> A fiscal quarter is assigned to the calendar quarter
+    whose end date is nearest, and collisions are broken by forcing the sequence to
+    advance one quarter at a time. That puts Walmart's February–April quarter in
+    Q1 and keeps Costco's twelve-week quarters, which end mid-calendar-quarter,
+    one-to-one and stable year over year.
+  </p>
+  <p class="lede">
+    <b>Estimates.</b> The estimate columns are filled only from numeric guidance a
+    company published itself on the same metric, shown at the midpoint of the
+    range. Qualitative outlooks are left blank rather than converted.
+  </p>
+  <p class="lede">
+    <b>Credit rows.</b> The credit band carries charge-off and delinquency
+    <b>rates</b>, not growth. They run on their own colour scale, inverted so a
+    rising rate reads as bad, and are excluded from the Average and Median rows.
+  </p>
+</div>
+</body>
+</html>

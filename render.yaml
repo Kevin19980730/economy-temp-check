@@ -1,0 +1,9 @@
+# Static site: the grid is a snapshot rebuilt by update.py and pushed, so there
+# is nothing to run at request time. Render auto-deploys on push.
+services:
+  - type: web
+    name: economy-temp-check
+    runtime: static
+    buildCommand: echo "prebuilt by export.py"
+    staticPublishPath: .
+    autoDeploy: true
