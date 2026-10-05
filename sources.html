@@ -97,7 +97,7 @@
   </div>
   <div class="statusbar">
     <span><b>42</b> series</span>
-    <span>store built <b>2026-09-28 07:35</b></span>
+    <span>store built <b>2026-10-05 14:15</b></span>
     <span>source <b>SEC EDGAR</b></span>
   </div>
 
@@ -495,10 +495,10 @@
       <td>CarMax (Used Unit Comps)<div class="note">Used-vehicle unit comps, not dollars, so this row is a volume read rather than a price-inflated one.</div></td>
       <td>KMX</td>
       <td class="metric">Comparable store used unit sales</td>
-      <td class="qtrs">10</td>
-      <td class="latest">Q2 &#39;26</td>
-      <td><a href="https://www.sec.gov/Archives/edgar/data/1170010/000117001026000053/q1fy27earningsrelease.htm" target="_blank" rel="noopener">2026-06-17</a>
-          <div><code>0001170010-26-000053</code></div></td>
+      <td class="qtrs">11</td>
+      <td class="latest">Q3 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/1170010/000117001026000102/q2fy27earningsrelease.htm" target="_blank" rel="noopener">2026-09-29</a>
+          <div><code>0001170010-26-000102</code></div></td>
       <td><code>text[comparable store used unit sales (increased|]</code></td>
     </tr>
     
@@ -506,10 +506,10 @@
       <td>Kroger (SSS, Ex. Fuel)</td>
       <td>KR</td>
       <td class="metric">Identical sales without fuel</td>
-      <td class="qtrs">10</td>
-      <td class="latest">Q2 &#39;26</td>
-      <td><a href="https://www.sec.gov/Archives/edgar/data/56873/000110465926075395/tm2618219d1_ex99-1.htm" target="_blank" rel="noopener">2026-06-18</a>
-          <div><code>0001104659-26-075395</code></div></td>
+      <td class="qtrs">11</td>
+      <td class="latest">Q3 &#39;26</td>
+      <td><a href="https://www.sec.gov/Archives/edgar/data/56873/000110465926106890/tm2625060d1_ex99-1.htm" target="_blank" rel="noopener">2026-09-11</a>
+          <div><code>0001104659-26-106890</code></div></td>
       <td><code>text[Identical [Ss]ales without fuel\s*(increased]</code></td>
     </tr>
     
@@ -584,7 +584,19 @@
 
   <h2>Gaps from the last run</h2>
   
-  <p class="ok">None — every cell on the grid was read from a filing.</p>
+  <div class="banner">
+    These cells could not be read from the filing — usually because the company
+    reworded the line. They render blank rather than guessed.
+  </div>
+  <div class="scroller">
+  <table>
+    <tr><th>Series</th><th>Quarter</th><th>Problem</th><th>Filing</th></tr>
+    
+    <tr><td>dri_sss</td><td>2026Q3</td>
+        <td>no extractor matched</td><td><code>0000940944-26-000032</code></td></tr>
+    
+  </table>
+  </div>
   
 
   <h2>Conventions</h2>
